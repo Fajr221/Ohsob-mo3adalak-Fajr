@@ -1,0 +1,21 @@
+{
+  "name": "حاسب المعدل",
+  "short_name": "حاسب المعدل",
+  "description": "حاسب المعدل العام ثانية باكالوريا - علوم فيزيائية",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a1f2f",
+  "theme_color": "#4da3c3",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

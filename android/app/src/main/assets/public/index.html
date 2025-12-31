@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسب المعدل العام</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0a1f2f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            direction: rtl;
+            padding: 10px;
+            color: #e0e0e0;
+        }
+
+        .container {
+            background: #14232b;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            height: 95vh; /* full screen */
+        }
+
+        /* HEADER */
+        h1.main-title {
+            font-size: 32px;
+            color: white;
+            text-align: center;
+            margin-bottom: 5px;
+            flex-shrink: 0;
+        }
+
+        h2.subtitle {
+            font-size: 18px;
+            color: #cfd8dc;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: normal;
+            flex-shrink: 0;
+        }
+
+        /* MATIERE CARD */
+        #matieres {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+            margin-right: 3px; /* move scrollbar slightly left */
+        }
+
+            /* Custom scrollbar */
+            #matieres::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            #matieres::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            #matieres::-webkit-scrollbar-thumb {
+                background: rgba(77,163,195,0.25);
+                border-radius: 20px;
+                transition: opacity 0.3s;
+            }
+
+                #matieres::-webkit-scrollbar-thumb:hover {
+                    background: rgba(77,163,195,0.45);
+                }
+
+        /* MATIERE CARD */
+        .matiere {
+            background: #1a2b38;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+            .matiere h3 {
+                margin-bottom: 12px;
+                font-size: 18px;
+                font-weight: 600;
+                color: #cfd8dc;
+            }
+
+        /* INPUTS GRID */
+        .inputs {
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap: 8px;
+        }
+
+        input {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #2a4b5d;
+            text-align: center;
+            font-size: 16px;
+            background: #1e3b4f;
+            color: #e0e0e0;
+            transition: 0.2s;
+        }
+
+            input::placeholder {
+                color: #9aa5b1;
+            }
+
+            input:focus {
+                border-color: #4da3c3;
+                outline: none;
+                box-shadow: 0 0 8px rgba(77,163,195,0.4);
+            }
+
+        /* BUTTON */
+        button {
+            padding: 16px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            background: #4da3c3;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+            button:hover {
+                background: #397b8c;
+            }
+
+        /* RESULT */
+        #result {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* RESPONSIVE SMALL SCREENS */
+        @media (max-width:600px) {
+            .inputs {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="main-title">حساب معدل ثانية باكالوريا - علوم فيزيائية</h1>
+        <h2 class="subtitle">Made by Fajr Qarro</h2>
+
+        <div id="matieres">
+
+            <!-- اللغة العربية -->
+            <div class="matiere" data-coef="2">
+                <h3>اللغة العربية</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- اللغة الفرنسية -->
+            <div class="matiere" data-coef="4">
+                <h3>اللغة الفرنسية</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- التربية الاسلامية -->
+            <div class="matiere" data-coef="2">
+                <h3>التربية الاسلامية</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- الرياضيات -->
+            <div class="matiere" data-coef="7">
+                <h3>الرياضيات</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- الفيزياء والكيمياء -->
+            <div class="matiere" data-coef="7">
+                <h3>الفيزياء والكيمياء</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- علوم الحياة والأرض -->
+            <div class="matiere" data-coef="5">
+                <h3>علوم الحياة والأرض</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- الفلسفة -->
+            <div class="matiere" data-coef="2">
+                <h3>الفلسفة</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- اللغة الإنجليزية -->
+            <div class="matiere" data-coef="2">
+                <h3>اللغة الإنجليزية</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- التربية البدنية -->
+            <div class="matiere" data-coef="4">
+                <h3>التربية البدنية</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="فرض 1" min="0" max="20">
+                    <input type="number" placeholder="فرض 2" min="0" max="20">
+                    <input type="number" placeholder="فرض 3" min="0" max="20">
+                    <input type="number" placeholder="فرض 4" min="0" max="20">
+                    <input type="number" placeholder="الأنشطة" min="0" max="20">
+                </div>
+            </div>
+
+            <!-- المواظبة والسلوك -->
+            <div class="matiere" data-coef="1">
+                <h3>المواظبة والسلوك</h3>
+                <div class="inputs">
+                    <input type="number" placeholder="العلامة" min="0" max="20">
+                </div>
+            </div>
+
+        </div>
+
+        <button id="calcBtn">احسب المعدل</button>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function calculate() {
+            let matieres = document.getElementsByClassName("matiere");
+            let total = 0;
+            let totalCoef = 0;
+
+            for (let matiere of matieres) {
+                let coef = Number(matiere.dataset.coef);
+                let inputs = matiere.querySelectorAll("input");
+
+                if (inputs.length === 1) { // المواظبة والسلوك
+                    if (inputs[0].value === "") continue;
+                    let mark = Math.min(Math.max(Number(inputs[0].value), 0), 20);
+                    total += mark * coef;
+                    totalCoef += coef;
+                    continue;
+                }
+
+                let examsSum = 0;
+                let examsCount = 0;
+
+                for (let i = 0; i < 4; i++) {
+                    if (inputs[i].value !== "") {
+                        let val = Math.min(Math.max(Number(inputs[i].value), 0), 20);
+                        examsSum += val;
+                        examsCount++;
+                    }
+                }
+
+                if (examsCount === 0) continue;
+
+                let examsAverage = examsSum / examsCount;
+
+                let activity = inputs[4] && inputs[4].value !== "" ? Math.min(Math.max(Number(inputs[4].value), 0), 20) : null;
+
+                let matiereAverage = activity !== null ? examsAverage * 0.75 + activity * 0.25 : examsAverage;
+
+                total += matiereAverage * coef;
+                totalCoef += coef;
+            }
+
+            if (totalCoef === 0) return;
+
+            let generalAverage = total / totalCoef;
+            let status = generalAverage >= 10 ? "ناجح , مبروك عليك ✅" : "وااااع ساقط هههه ❌";
+
+            let resultEl = document.getElementById("result");
+            resultEl.innerText = `المعدل العام: ${generalAverage.toFixed(2)} — ${status}`;
+            resultEl.style.color = generalAverage >= 10 ? "#4CAF50" : "#FF4C4C"; // green or red
+        }
+
+        document.getElementById("calcBtn").addEventListener("click", calculate);
+    </script>
+
+</body>
+</html>

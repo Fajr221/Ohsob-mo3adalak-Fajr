@@ -1,0 +1,6 @@
+{
+	"appId": "com.fajr.hisab.moadal",
+	"appName": "حاسب المعدل",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">حاسب المعدل</string>
+    <string name="title_activity_main">حاسب المعدل</string>
+    <string name="package_name">com.fajr.hasibalmoadal</string>
+    <string name="custom_url_scheme">com.fajr.hasibalmoadal</string>
+</resources>
